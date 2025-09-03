@@ -1,11 +1,12 @@
-import React from 'react';
 import AppList from './features/applist/AppList';
+import Header from './components/Header';
+
 import './App.css';
 
 function App() {
   return (
     <>
-      <h1>superApp</h1>
+      <Header />
       <AppList
         apps={[
           { name: 'App One', icon: 'https://via.placeholder.com/50' },
