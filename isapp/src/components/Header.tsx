@@ -3,9 +3,13 @@ import styled from 'styled-components';
 
 const HeaderContainer = styled.header`
   background-color: #282c34;
-  padding: 20px;
+  padding: 8px;
   color: white;
   text-align: center;
+  & h1 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
 `;
 
 export interface HeaderProps {
