@@ -1,7 +1,10 @@
 import { useState } from 'react';
-import AppList from './features/applist/AppList';
+
 import Header from './components/Header';
+import Kanbans from './features/kanbans/Kanbans';
+import AppList from './features/applist/AppList';
 import AppBrowser from './features/appbrowser/AppBrowser';
+
 import apps from './apps';
 
 import './App.css';
@@ -23,6 +26,7 @@ function App() {
   return (
     <>
       <Header />
+      <Kanbans />
       <AppList apps={apps} handleAppClick={handleAppClick} />
       {inappMode ? (
         <AppBrowser initialUrl={inappUrl} handleClose={handleToggleMode} />
