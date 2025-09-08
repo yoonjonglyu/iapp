@@ -10,6 +10,8 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       manifest: {
+        id: 'iApp',
+        scope: '/iapp/',
         name: 'ISAapps',
         short_name: 'Iapp',
         start_url: '/iapp/',
