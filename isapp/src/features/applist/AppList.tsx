@@ -6,12 +6,18 @@ import GridView from '../../components/GridView';
 import type { AppsProps } from '../../apps';
 
 const ItemContainer = styled.div`
-  cursor: 'pointer';
-  text-align: 'center';
+  cursor: pointer;
+  text-align: center;
+  & p {
+    margin: 0;
+    font-size: 14px;
+    color: #333;
+  }
 `;
 const ItemIcon = styled.img`
   width: 50px;
   height: 50px;
+  border-radius: 12px;
 `;
 
 export interface AppListProps {
@@ -23,12 +29,10 @@ const AppList: React.FC<AppListProps> = ({ apps, handleAppClick }) => {
   const appItems = apps.map((app) => (
     <ItemContainer
       key={app.name}
-      onClick={() => handleAppClick(app)}
-      style={{ cursor: 'pointer', textAlign: 'center' }}>
+      onClick={() => handleAppClick(app)}>
       <ItemIcon
         src={app.icon}
         alt={app.name}
-        style={{ width: '50px', height: '50px' }}
       />
       <p>{app.name}</p>
     </ItemContainer>
