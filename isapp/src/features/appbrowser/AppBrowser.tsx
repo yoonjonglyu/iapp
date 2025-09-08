@@ -1,5 +1,5 @@
-import React, { useRef, useState } from "react";
-import styled from "styled-components";
+import React, { useRef, useState } from 'react';
+import styled from 'styled-components';
 
 const Container = styled.div`
   position: absolute;
@@ -9,6 +9,7 @@ const Container = styled.div`
   flex-direction: column;
   width: 100%;
   height: 100%;
+  background-color: #131212;
 `;
 
 const Toolbar = styled.form`
@@ -31,6 +32,9 @@ const UrlInput = styled.input`
 const IframeWrapper = styled.div`
   flex: 1;
   border-top: 1px solid #ddd;
+  border-top-right-radius: 12px;
+  border-top-left-radius: 12px;
+  overflow: hidden;
 `;
 
 const StyledIframe = styled.iframe`
@@ -40,10 +44,11 @@ const StyledIframe = styled.iframe`
 `;
 
 export interface AppBrowserProps {
+  handleClose?: () => void;
   initialUrl: string;
 }
 
-const AppBrowser: React.FC<AppBrowserProps> = ({ initialUrl }) => {
+const AppBrowser: React.FC<AppBrowserProps> = ({ initialUrl,handleClose }) => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [url, setUrl] = useState(initialUrl);
   const [inputUrl, setInputUrl] = useState(initialUrl);
@@ -59,43 +64,23 @@ const AppBrowser: React.FC<AppBrowserProps> = ({ initialUrl }) => {
     }
   };
 
-  const handleBack = () => {
-    if (iframeRef.current && iframeRef.current.contentWindow) {
-      iframeRef.current.contentWindow.history.back();
-    }
-  };
-
-  const handleForward = () => {
-    if (iframeRef.current && iframeRef.current.contentWindow) {
-      iframeRef.current.contentWindow.history.forward();
-    }
-  };
-
   return (
     <Container>
       <Toolbar onSubmit={handleNavigate}>
-      <ToolbarButton type="button" onClick={handleBack} title="Back">
-        ◀
-      </ToolbarButton>
-      <ToolbarButton type="button" onClick={handleForward} title="Forward">
-        ▶
-      </ToolbarButton>
-      <ToolbarButton type="button" onClick={handleReload} title="Reload">
-        ⟳
-      </ToolbarButton>
-      <UrlInput
-        type="text"
-        value={inputUrl}
-        onChange={(e) => setInputUrl(e.target.value)}
-      />
-      <ToolbarButton type="submit">Go</ToolbarButton>
+        <ToolbarButton type='button' onClick={handleClose} title='Close'>
+          X
+        </ToolbarButton>
+        <UrlInput
+          type='text'
+          value={inputUrl}
+          onChange={(e) => setInputUrl(e.target.value)}
+        />
+        <ToolbarButton type='button' onClick={handleReload} title='Reload'>
+          ⟳
+        </ToolbarButton>
       </Toolbar>
       <IframeWrapper>
-      <StyledIframe
-        ref={iframeRef}
-        src={url}
-        title="App Browser"
-      />
+        <StyledIframe ref={iframeRef} src={url} title='App Browser' />
       </IframeWrapper>
     </Container>
   );
