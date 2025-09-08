@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import AppList from './features/applist/AppList';
 import Header from './components/Header';
 import AppBrowser from './features/appbrowser/AppBrowser';
