@@ -1,4 +1,16 @@
-import React from "react";
+import React from 'react';
+import styled from 'styled-components';
+
+const GridContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, minmax(100px, 1fr));
+`;
+
+const GridItem = styled.div`
+  border: none;
+  padding: 10px;
+  text-align: center;
+`;
 
 export interface GridViewProps {
   items: React.ReactNode[];
@@ -6,14 +18,12 @@ export interface GridViewProps {
 
 const GridView: React.FC<GridViewProps> = ({ items }) => {
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, minmax(100px, 1fr))', gap: '10px' }}>
+    <GridContainer>
       {items.map((item, index) => (
-        <div key={index} style={{ border: '1px solid #ccc', padding: '10px', textAlign: 'center' }}>
-          {item}
-        </div>
+        <GridItem key={index}>{item}</GridItem>
       ))}
-    </div>
+    </GridContainer>
   );
-}
+};
 
 export default GridView;

@@ -8,7 +8,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
+  height: calc(100% - 40px);
   background-color: #131212;
 `;
 
@@ -48,7 +48,7 @@ export interface AppBrowserProps {
   initialUrl: string;
 }
 
-const AppBrowser: React.FC<AppBrowserProps> = ({ initialUrl,handleClose }) => {
+const AppBrowser: React.FC<AppBrowserProps> = ({ initialUrl, handleClose }) => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [url, setUrl] = useState(initialUrl);
   const [inputUrl, setInputUrl] = useState(initialUrl);

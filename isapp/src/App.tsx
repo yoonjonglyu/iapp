@@ -24,12 +24,9 @@ function App() {
     <>
       <Header />
       <AppList apps={apps} handleAppClick={handleAppClick} />
-      <button onClick={handleToggleMode} style={{ margin: '10px' }}>
-        {inappMode ? 'Exit In-App Mode' : 'Enter In-App Mode'}
-      </button>
-      {inappMode && (
+      {inappMode ? (
         <AppBrowser initialUrl={inappUrl} handleClose={handleToggleMode} />
-      )}
+      ) : null}
     </>
   );
 }

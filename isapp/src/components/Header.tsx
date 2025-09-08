@@ -8,7 +8,7 @@ const HeaderContainer = styled.header`
   text-align: center;
   & h1 {
     margin: 0;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
 `;
 
@@ -19,7 +19,7 @@ export interface HeaderProps {
 const Header: React.FC<HeaderProps> = () => {
   return (
     <HeaderContainer>
-      <h1>ISA App</h1>
+      <h1>ISA Apps</h1>
     </HeaderContainer>
   );
 };
