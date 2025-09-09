@@ -19,24 +19,11 @@ React + TypeScript + Vite 기반으로 제작되었으며, Progressive Web App(P
 ## 🛠 기술 스택
 
 - **Frontend**: [React](https://react.dev/), [TypeScript](https://www.typescriptlang.org/), [Vite](https://vitejs.dev/)
-- **UI**: CSS Modules / Emotion (선택 적용 가능)
+- **UI**: CSS Modules / Styled-components (선택 적용 가능)
 - **배포**: [GitHub Pages](https://pages.github.com/)
 - **기타**: Progressive Web App (PWA)
 
 ---
 
-## 📂 프로젝트 구조
-
-```bash
-iapp/
-├── public/          # 정적 리소스 (favicon, manifest.json 등)
-├── src/
-│   ├── apps/        # 미니앱 (Memo, Daoxin 등)
-│   ├── components/  # 공통 UI 컴포넌트
-│   ├── pages/       # 라우팅 페이지
-│   ├── App.tsx
-│   └── main.tsx
-├── package.json
-├── tsconfig.json
-└── vite.config.ts
-```
+## LICENSE
+- MIT
