@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
+
+import RecentApps from '../../components/RecentApps';
 
 const Container = styled.div`
   position: relative;
@@ -32,10 +34,33 @@ const KanbanWraps = styled.ul`
 `;
 
 const Kanbans: React.FC = () => {
+  useEffect(() => {
+    localStorage.setItem(
+      'recentApps',
+      JSON.stringify([
+        {
+          id: 'memo',
+          name: 'Memo',
+          icon: 'https://yoonjonglyu.github.io/memo/assets/apple-touch-icon-60x60.png',
+          uri: 'https://yoonjonglyu.github.io/memo/',
+          lastOpened: Date.now(),
+        },
+        {
+          id: 'daoxin',
+          name: 'Daoxin',
+          icon: 'https://yoonjonglyu.github.io/daoxin/assets/apple-touch-icon-60x60.png',
+          uri: 'https://yoonjonglyu.github.io/daoxin/',
+          lastOpened: Date.now() - 1000,
+        },
+      ]),
+    );
+  }, []);
   return (
     <Container>
       <KanbanWraps>
-        <li>Kanban 1</li>
+        <li>
+          <RecentApps id={''} name={''} icon={''} uri={''} lastOpened={0} />
+        </li>
         <li>Kanban 2</li>
       </KanbanWraps>
     </Container>
