@@ -1,14 +1,8 @@
 // RecentApps.tsx
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
-export interface RecentAppProps {
-  id: string;
-  name: string;
-  icon: string;
-  uri: string;
-  lastOpened: number;
-}
+import useRecent from '../hooks/useRecent';
 
 const Container = styled.div`
   background: #fff;
@@ -66,21 +60,20 @@ const AppName = styled.span`
   width: 100%;
 `;
 
-const RecentApps: React.FC<RecentAppProps> = () => {
-  const [recent, setRecent] = useState<RecentAppProps[]>([]);
+export interface RecentAppProps {
+  openApp: (app: { id: string; icon: string; name: string }) => void;
+}
 
-  useEffect(() => {
-    const data = JSON.parse(localStorage.getItem('recentApps') || '[]');
-    setRecent(data);
-  }, []);
+const RecentApps: React.FC<RecentAppProps> = ({ openApp }) => {
+  const { recentApps } = useRecent();
 
-  if (recent.length === 0) return null;
+  if (recentApps.length === 0) return null;
 
   return (
     <Container>
       <Title>최근 사용 앱</Title>
       <List>
-        {recent.map((app) => (
+        {recentApps.map((app) => (
           <AppButton key={app.id} onClick={() => openApp(app)}>
             <AppIcon src={app.icon} alt={app.name} />
             <AppName>{app.name}</AppName>
@@ -92,15 +85,3 @@ const RecentApps: React.FC<RecentAppProps> = () => {
 };
 
 export default RecentApps;
-
-function openApp(app: RecentAppProps) {
-  window.location.href = app.uri;
-
-  const recent = JSON.parse(localStorage.getItem('recentApps') || '[]');
-  const updated = [
-    { ...app, lastOpened: Date.now() },
-    ...recent.filter((a: RecentAppProps) => a.id !== app.id),
-  ].slice(0, 5);
-
-  localStorage.setItem('recentApps', JSON.stringify(updated));
-}

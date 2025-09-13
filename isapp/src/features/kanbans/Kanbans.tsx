@@ -59,7 +59,7 @@ const Kanbans: React.FC = () => {
     <Container>
       <KanbanWraps>
         <li>
-          <RecentApps id={''} name={''} icon={''} uri={''} lastOpened={0} />
+          <RecentApps openApp={() => {}} />
         </li>
         <li>Kanban 2</li>
       </KanbanWraps>
