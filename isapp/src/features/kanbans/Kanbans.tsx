@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import RecentApps from '../../components/RecentApps';
+import RecentApps from './RecentApps';
+import KanbanItem from '../../components/KanbanItem';
 
 const Container = styled.div`
   position: relative;
@@ -16,14 +17,14 @@ const Container = styled.div`
 const KanbanWraps = styled.ul`
   display: flex;
   gap: 6px;
-  list-style: none;
   margin: 0;
   padding: 0;
+  list-style: none;
+
   & li {
     flex: 1;
     width: 50%;
-    height: 100%;
-    min-height: 150px;
+    height: 150px;
     padding: 8px;
     overflow: hidden;
     background: #92929221;
@@ -38,14 +39,22 @@ export interface KanbansProps {
 }
 
 const Kanbans: React.FC<KanbansProps> = ({ handleAppClick }) => {
-
   return (
     <Container>
       <KanbanWraps>
         <li>
-          <RecentApps openApp={handleAppClick} />
+          <RecentApps openApp={handleAppClick}></RecentApps>
         </li>
-        <li>Kanban 2</li>
+        <li>
+          <KanbanItem>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', height: '100%' }}>
+              <div style={{ background: '#e0e0e0', borderRadius: '6px', minHeight: 60, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Item 1</div>
+              <div style={{ background: '#e0e0e0', borderRadius: '6px', minHeight: 60, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Item 2</div>
+              <div style={{ background: '#e0e0e0', borderRadius: '6px', minHeight: 60, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Item 3</div>
+              <div style={{ background: '#e0e0e0', borderRadius: '6px', minHeight: 60, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Item 4</div>
+            </div>
+          </KanbanItem>
+        </li>
       </KanbanWraps>
     </Container>
   );
