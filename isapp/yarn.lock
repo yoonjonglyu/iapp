@@ -3080,6 +3080,11 @@ is-weakset@^2.0.3:
     call-bound "^1.0.3"
     get-intrinsic "^1.2.6"
 
+isa-util@^1.0.18:
+  version "1.0.18"
+  resolved "https://registry.yarnpkg.com/isa-util/-/isa-util-1.0.18.tgz#f31af863f33c78c73a83d0fc55a62f25e534c259"
+  integrity sha512-Wy3TX41pRlPbFx13KbAyd3G7FvfzAMDVlDtsGQoTwKozG+BQQvBoWyn/dFcMZZbWP3/BNAgB6LR+tbOXr6Ve4Q==
+
 isarray@^2.0.5:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/isarray/-/isarray-2.0.5.tgz#8af1e4c1221244cc62459faf38940d4e644a5723"
