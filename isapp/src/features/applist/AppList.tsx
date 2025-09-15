@@ -15,8 +15,8 @@ const ItemContainer = styled.div`
   }
 `;
 const ItemIcon = styled.img`
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   border-radius: 12px;
 `;
 

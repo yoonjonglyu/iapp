@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import RecentApps from '../../components/RecentApps';
@@ -33,33 +33,17 @@ const KanbanWraps = styled.ul`
   }
 `;
 
-const Kanbans: React.FC = () => {
-  useEffect(() => {
-    localStorage.setItem(
-      'recentApps',
-      JSON.stringify([
-        {
-          id: 'memo',
-          name: 'Memo',
-          icon: 'https://yoonjonglyu.github.io/memo/assets/apple-touch-icon-60x60.png',
-          uri: 'https://yoonjonglyu.github.io/memo/',
-          lastOpened: Date.now(),
-        },
-        {
-          id: 'daoxin',
-          name: 'Daoxin',
-          icon: 'https://yoonjonglyu.github.io/daoxin/assets/apple-touch-icon-60x60.png',
-          uri: 'https://yoonjonglyu.github.io/daoxin/',
-          lastOpened: Date.now() - 1000,
-        },
-      ]),
-    );
-  }, []);
+export interface KanbansProps {
+  handleAppClick: (app: { name: string; icon: string; uri: string }) => void;
+}
+
+const Kanbans: React.FC<KanbansProps> = ({ handleAppClick }) => {
+
   return (
     <Container>
       <KanbanWraps>
         <li>
-          <RecentApps openApp={() => {}} />
+          <RecentApps openApp={handleAppClick} />
         </li>
         <li>Kanban 2</li>
       </KanbanWraps>

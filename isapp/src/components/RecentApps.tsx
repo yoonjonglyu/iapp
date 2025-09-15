@@ -39,6 +39,9 @@ const AppButton = styled.button`
   background: none;
   border: none;
   cursor: pointer;
+  &:focus {
+    outline: none;
+  }
 `;
 
 const AppIcon = styled.img`
@@ -61,7 +64,7 @@ const AppName = styled.span`
 `;
 
 export interface RecentAppProps {
-  openApp: (app: { id: string; icon: string; name: string }) => void;
+  openApp: (app: {icon: string; name: string, uri: string }) => void;
 }
 
 const RecentApps: React.FC<RecentAppProps> = ({ openApp }) => {
@@ -74,7 +77,7 @@ const RecentApps: React.FC<RecentAppProps> = ({ openApp }) => {
       <Title>최근 사용 앱</Title>
       <List>
         {recentApps.map((app) => (
-          <AppButton key={app.id} onClick={() => openApp(app)}>
+          <AppButton key={app.name} onClick={() => openApp(app)}>
             <AppIcon src={app.icon} alt={app.name} />
             <AppName>{app.name}</AppName>
           </AppButton>

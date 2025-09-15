@@ -1,6 +1,7 @@
 import { useAtom } from 'jotai';
+import { setLocalStorage } from 'isa-util';
 
-import { recentAppsAtom } from '../store/recent';
+import { recentAppsAtom, RECENTAPP_ID } from '../store/recent';
 import type { RecentAppProps } from '../store/recent';
 
 const useRecent = () => {
@@ -8,8 +9,12 @@ const useRecent = () => {
 
   const addRecentApp = (app: RecentAppProps) => {
     setRecentApps((prev) => {
-      const updated = [app, ...prev.filter((item) => item.id !== app.id)];
-      return updated.slice(0, 2); // Keep only the latest 2 entries
+      const updated = [
+        app,
+        ...prev.filter((item) => item.name !== app.name),
+      ].slice(0, 2); // Keep only the latest 2 entries
+      setLocalStorage(RECENTAPP_ID, updated);
+      return updated;
     });
   };
 
