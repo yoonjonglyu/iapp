@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import RecentApps from './RecentApps';
-import KanbanItem from '../../components/KanbanItem';
+import SquareWidget from './SquareWidget';
 
 const Container = styled.div`
   position: relative;
@@ -46,14 +46,7 @@ const Kanbans: React.FC<KanbansProps> = ({ handleAppClick }) => {
           <RecentApps openApp={handleAppClick}></RecentApps>
         </li>
         <li>
-          <KanbanItem>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', height: '100%' }}>
-              <div style={{ background: '#e0e0e0', borderRadius: '6px', minHeight: 60, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Item 1</div>
-              <div style={{ background: '#e0e0e0', borderRadius: '6px', minHeight: 60, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Item 2</div>
-              <div style={{ background: '#e0e0e0', borderRadius: '6px', minHeight: 60, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Item 3</div>
-              <div style={{ background: '#e0e0e0', borderRadius: '6px', minHeight: 60, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Item 4</div>
-            </div>
-          </KanbanItem>
+          <SquareWidget openApp={handleAppClick}></SquareWidget>
         </li>
       </KanbanWraps>
     </Container>
