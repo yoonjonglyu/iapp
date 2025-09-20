@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Kanbans from './features/kanbans/Kanbans';
 import AppList from './features/applist/AppList';
 import AppBrowser from './features/appbrowser/AppBrowser';
+import BottomNav from './features/bottomnavigation/BottomNav';
 
 import useRecent from './hooks/useRecent';
 
@@ -35,6 +36,7 @@ function App() {
       {inappMode ? (
         <AppBrowser initialUrl={inappUrl} handleClose={handleToggleMode} />
       ) : null}
+      <BottomNav />
     </>
   );
 }

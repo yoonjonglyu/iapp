@@ -10,6 +10,7 @@ const Container = styled.div`
   width: 100%;
   height: calc(100% - 40px);
   background-color: #131212;
+  z-index: 1000;
 `;
 
 const Toolbar = styled.form`
