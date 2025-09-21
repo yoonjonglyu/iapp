@@ -19,14 +19,15 @@ function App() {
   );
   const { addRecentApp } = useRecent();
 
-  const handleToggleMode = () => {
-    setInappMode(!inappMode);
-  };
   const handleAppClick = (app: { name: string; icon: string; uri: string }) => {
-    setInappUrl(app.uri);
-    handleToggleMode();
+    openAppByInAppBrowser(app.uri);
     addRecentApp(app);
   };
+  const openAppByInAppBrowser = (url: string) => {
+    setInappUrl(url);
+    toggleInAppBrowser();
+  };
+  const toggleInAppBrowser = () => setInappMode(!inappMode);
 
   return (
     <>
@@ -34,7 +35,7 @@ function App() {
       <Kanbans handleAppClick={handleAppClick} />
       <AppList apps={apps} handleAppClick={handleAppClick} />
       {inappMode ? (
-        <AppBrowser initialUrl={inappUrl} handleClose={handleToggleMode} />
+        <AppBrowser initialUrl={inappUrl} handleClose={toggleInAppBrowser} />
       ) : null}
       <BottomNav />
     </>

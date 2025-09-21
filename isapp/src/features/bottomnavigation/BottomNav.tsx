@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const navItems = [
-  { label: 'Home', icon: '🏠' },
-  { label: 'Search', icon: '🔍' },
-  { label: 'Profile', icon: '👤' },
+  { label: 'ChatGPT', icon: '🤖', link: 'https://chat.openai.com/' },
+  { label: 'Gemini', icon: '🔮', link: 'https://gemini.google.com/' },
+  { label: 'Grok', icon: '🦉', link: 'https://grok.x.ai/' },
 ];
 
 const Nav = styled.nav`
@@ -23,7 +23,7 @@ const Nav = styled.nav`
   z-index: 20;
 `;
 
-const NavButton = styled.button<{ active: boolean }>`
+const NavButton = styled.a<{ active: boolean }>`
   background: none;
   border: none;
   outline: none;
@@ -34,6 +34,7 @@ const NavButton = styled.button<{ active: boolean }>`
   flex-direction: column;
   align-items: center;
   cursor: pointer;
+  text-decoration: none;
 `;
 
 const Icon = styled.span`
@@ -48,8 +49,12 @@ const BottomNav: React.FC = () => {
       {navItems.map((item, idx) => (
         <NavButton
           key={item.label}
+          href={item.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          active={value === idx}
           onClick={() => setValue(idx)}
-          active={value === idx}>
+        >
           <Icon>{item.icon}</Icon>
           {item.label}
         </NavButton>
