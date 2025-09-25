@@ -5,6 +5,7 @@ import Kanbans from './features/kanbans/Kanbans';
 import AppList from './features/applist/AppList';
 import AppBrowser from './features/appbrowser/AppBrowser';
 import BottomNav from './features/bottomnavigation/BottomNav';
+import AppWrapper from './miniapps/AppWrapper';
 
 import useRecent from './hooks/useRecent';
 
@@ -13,6 +14,7 @@ import apps from './apps';
 import './App.css';
 
 function App() {
+  const [openMiniApp, setOpenMiniApp] = useState(false);
   const [inappMode, setInappMode] = useState(false);
   const [inappUrl, setInappUrl] = useState(
     'https://www.google.com/webhp?igu=1',
@@ -36,6 +38,9 @@ function App() {
       <AppList apps={apps} handleAppClick={handleAppClick} />
       {inappMode ? (
         <AppBrowser initialUrl={inappUrl} handleClose={toggleInAppBrowser} />
+      ) : null}
+      {openMiniApp ? (
+        <AppWrapper closeApp={() => setOpenMiniApp(false)} />
       ) : null}
       <BottomNav />
     </>
