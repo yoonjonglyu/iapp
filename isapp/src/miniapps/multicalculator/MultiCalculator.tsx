@@ -18,9 +18,9 @@ const Calculator: React.FC<CalculatorProps> = ({
         value={input}
         onChange={(e) => onInputChange(e.target.value)}
         placeholder='Enter expression or number, 2,3 = 2+3'
-        style={{ width: '100%', padding: '8px', fontSize: '1rem' }}
+        style={{ width: '90%', padding: '8px', fontSize: '1rem' }}
       />
-      <div style={{ marginTop: '8px', fontWeight: 'bold' }}>
+      <div style={{ marginTop: '8px', fontWeight: 'bold', color: '#c9c9c9' }}>
         Result: {result}
       </div>
     </>
@@ -59,10 +59,12 @@ const MultiCalculator: React.FC = () => {
     <>
       <div
         style={{
+          maxHeight: '70vh',
           border: '1px solid #ccc',
           padding: 16,
           marginBottom: 16,
           borderRadius: 8,
+          overflow: 'auto',
         }}>
         {calculators.map((input, key) => (
           <Calculator

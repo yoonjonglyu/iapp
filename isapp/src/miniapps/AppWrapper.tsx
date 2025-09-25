@@ -33,11 +33,17 @@ const MiniAppWrapper = styled.div`
 `;
 
 interface AppWrapperProps {
+  app: string;
   closeApp?: () => void;
 }
 
-const AppWrapper: React.FC<AppWrapperProps> = ({ closeApp }) => {
-  const miniApp = <MultiCalculator />; // Change this to switch mini-apps
+const AppWrapper: React.FC<AppWrapperProps> = ({ app, closeApp }) => {
+  let miniApp = null;
+  if (app === 'multicalculator') {
+    miniApp = <MultiCalculator />;
+  } else {
+    miniApp = <div>App not found</div>;
+  }
 
   return (
     <Container className='app-wrapper'>
@@ -45,7 +51,7 @@ const AppWrapper: React.FC<AppWrapperProps> = ({ closeApp }) => {
         <ToolbarButton type='button' onClick={closeApp} title='Close'>
           X
         </ToolbarButton>
-        <span>Mini App</span>
+        <span>{app}</span>
       </Toolbar>
       <MiniAppWrapper>{miniApp}</MiniAppWrapper>
     </Container>

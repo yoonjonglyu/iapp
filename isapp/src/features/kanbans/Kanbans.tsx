@@ -36,9 +36,13 @@ const KanbanWraps = styled.ul`
 
 export interface KanbansProps {
   handleAppClick: (app: { name: string; icon: string; uri: string }) => void;
+  handleMiniAppClick: (name: string) => void;
 }
 
-const Kanbans: React.FC<KanbansProps> = ({ handleAppClick }) => {
+const Kanbans: React.FC<KanbansProps> = ({
+  handleAppClick,
+  handleMiniAppClick,
+}) => {
   return (
     <Container>
       <KanbanWraps>
@@ -46,7 +50,7 @@ const Kanbans: React.FC<KanbansProps> = ({ handleAppClick }) => {
           <RecentApps openApp={handleAppClick}></RecentApps>
         </li>
         <li>
-          <SquareWidget openApp={handleAppClick}></SquareWidget>
+          <SquareWidget openApp={handleMiniAppClick}></SquareWidget>
         </li>
       </KanbanWraps>
     </Container>

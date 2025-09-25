@@ -20,17 +20,27 @@ const WidgetItem = styled.button`
   border-radius: 6px;
   border: none;
   cursor: pointer;
+  &:focus {
+    outline: none;
+  }
+  & span {
+    font-size: 24px;
+  }
 `;
 
 export interface SquareWidgetProps {
-  openApp?: (app: { icon: string; name: string; uri: string }) => void;
+  openApp: (app: string) => void;
 }
 
 const SquareWidget: React.FC<SquareWidgetProps> = ({ openApp }) => {
   return (
     <KanbanItem>
       <Container>
-        <WidgetItem onClick={() => openApp}></WidgetItem>
+        <WidgetItem onClick={() => openApp('multicalculator')}>
+          <span role='img' aria-label='calculator'>
+            🧮
+          </span>
+        </WidgetItem>
         <WidgetItem onClick={() => openApp}></WidgetItem>
         <WidgetItem onClick={() => openApp}></WidgetItem>
         <WidgetItem onClick={() => openApp}></WidgetItem>
