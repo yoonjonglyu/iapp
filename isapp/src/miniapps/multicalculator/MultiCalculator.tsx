@@ -1,11 +1,37 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 
 export interface CalculatorProps {
   input: string;
   onInputChange: (v: string) => void;
   result: string;
 }
-// Calculator: Single calculator logic
+
+const Input = styled.input`
+  width: 90%;
+  padding: 8px;
+  font-size: 1rem;
+`;
+
+const Result = styled.div`
+  margin-top: 8px;
+  font-weight: bold;
+  color: #c9c9c9;
+`;
+
+const CalculatorContainer = styled.div`
+  max-height: 70vh;
+  border: 1px solid #ccc;
+  padding: 16px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  overflow: auto;
+`;
+
+const Button = styled.button<{ marginTop?: number }>`
+  margin-top: ${({ marginTop }) => (marginTop ? `${marginTop}px` : '0')};
+`;
+
 const Calculator: React.FC<CalculatorProps> = ({
   input,
   onInputChange,
@@ -13,21 +39,17 @@ const Calculator: React.FC<CalculatorProps> = ({
 }) => {
   return (
     <>
-      <input
+      <Input
         type='text'
         value={input}
         onChange={(e) => onInputChange(e.target.value)}
         placeholder='Enter expression or number, 2,3 = 2+3'
-        style={{ width: '90%', padding: '8px', fontSize: '1rem' }}
       />
-      <div style={{ marginTop: '8px', fontWeight: 'bold', color: '#c9c9c9' }}>
-        Result: {result}
-      </div>
+      <Result>Result: {result}</Result>
     </>
   );
 };
 
-// MultiCalculator: Manages multiple calculators
 const MultiCalculator: React.FC = () => {
   const [calculators, setCalculators] = useState(['', '', '', '', '', '']);
   const [results, setResults] = useState<string[]>([]);
@@ -44,9 +66,12 @@ const MultiCalculator: React.FC = () => {
   const calculateResults = () => {
     const newResults = calculators.map((input) => {
       try {
-        const _input = input.split(',').join('+');
+        const normalized = input
+          .replace(/,/g, '+') // 콤마 → +
+          .replace(/×/g, '*') // 유니코드 곱하기 → *
+          .replace(/÷/g, '/'); // 유니코드 나누기 → /
 
-        const evalResult = eval(_input);
+        const evalResult = eval(normalized);
         return evalResult.toString();
       } catch {
         return 'Error';
@@ -57,15 +82,7 @@ const MultiCalculator: React.FC = () => {
 
   return (
     <>
-      <div
-        style={{
-          maxHeight: '70vh',
-          border: '1px solid #ccc',
-          padding: 16,
-          marginBottom: 16,
-          borderRadius: 8,
-          overflow: 'auto',
-        }}>
+      <CalculatorContainer>
         {calculators.map((input, key) => (
           <Calculator
             key={key}
@@ -74,12 +91,11 @@ const MultiCalculator: React.FC = () => {
             result={results[key] || ''}
           />
         ))}
-
-        <button onClick={calculateResults} style={{ marginTop: 8 }}>
+        <Button onClick={calculateResults} marginTop={8}>
           Calculate
-        </button>
-      </div>
-      <button onClick={addCalculator}>Add Calculator</button>
+        </Button>
+      </CalculatorContainer>
+      <Button onClick={addCalculator}>Add Calculator</Button>
     </>
   );
 };
