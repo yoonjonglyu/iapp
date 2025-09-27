@@ -250,7 +250,24 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
   text-decoration: none;
 `,Icon=dt.span`
   font-size: 24px;
-`,BottomNav=()=>{const[l,i]=reactExports.useState(0);return jsxRuntimeExports.jsx(Nav,{children:navItems.map((s,c)=>jsxRuntimeExports.jsxs(NavButton,{href:s.link,target:"_blank",rel:"noopener noreferrer",active:l===c,onClick:()=>i(c),children:[jsxRuntimeExports.jsx(Icon,{children:s.icon}),s.label]},s.label))})},Calculator=({input:l,onInputChange:i,result:s})=>jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment,{children:[jsxRuntimeExports.jsx("input",{type:"text",value:l,onChange:c=>i(c.target.value),placeholder:"Enter expression or number, 2,3 = 2+3",style:{width:"90%",padding:"8px",fontSize:"1rem"}}),jsxRuntimeExports.jsxs("div",{style:{marginTop:"8px",fontWeight:"bold",color:"#c9c9c9"},children:["Result: ",s]})]}),MultiCalculator=()=>{const[calculators,setCalculators]=reactExports.useState(["","","","","",""]),[results,setResults]=reactExports.useState([]),addCalculator=()=>{setCalculators([...calculators,""]),setResults([...results,""])},updateCalculatorInput=(l,i)=>{const s=[...calculators];s[l]=i,setCalculators(s)},calculateResults=()=>{const newResults=calculators.map(input=>{try{const _input=input.split(",").join("+"),evalResult=eval(_input);return evalResult.toString()}catch{return"Error"}});setResults(newResults)};return jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment,{children:[jsxRuntimeExports.jsxs("div",{style:{maxHeight:"70vh",border:"1px solid #ccc",padding:16,marginBottom:16,borderRadius:8,overflow:"auto"},children:[calculators.map((l,i)=>jsxRuntimeExports.jsx(Calculator,{input:l,onInputChange:s=>updateCalculatorInput(i,s),result:results[i]||""},i)),jsxRuntimeExports.jsx("button",{onClick:calculateResults,style:{marginTop:8},children:"Calculate"})]}),jsxRuntimeExports.jsx("button",{onClick:addCalculator,children:"Add Calculator"})]})},Container=dt.div`
+`,BottomNav=()=>{const[l,i]=reactExports.useState(0);return jsxRuntimeExports.jsx(Nav,{children:navItems.map((s,c)=>jsxRuntimeExports.jsxs(NavButton,{href:s.link,target:"_blank",rel:"noopener noreferrer",active:l===c,onClick:()=>i(c),children:[jsxRuntimeExports.jsx(Icon,{children:s.icon}),s.label]},s.label))})},Input=dt.input`
+  width: 90%;
+  padding: 8px;
+  font-size: 1rem;
+`,Result=dt.div`
+  margin-top: 8px;
+  font-weight: bold;
+  color: #c9c9c9;
+`,CalculatorContainer=dt.div`
+  max-height: 70vh;
+  border: 1px solid #ccc;
+  padding: 16px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  overflow: auto;
+`,Button=dt.button`
+  margin-top: ${({marginTop:l})=>l?`${l}px`:"0"};
+`,Calculator=({input:l,onInputChange:i,result:s})=>jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment,{children:[jsxRuntimeExports.jsx(Input,{type:"text",value:l,onChange:c=>i(c.target.value),placeholder:"Enter expression or number, 2,3 = 2+3"}),jsxRuntimeExports.jsxs(Result,{children:["Result: ",s]})]}),MultiCalculator=()=>{const[calculators,setCalculators]=reactExports.useState(["","","","","",""]),[results,setResults]=reactExports.useState([]),addCalculator=()=>{setCalculators([...calculators,""]),setResults([...results,""])},updateCalculatorInput=(l,i)=>{const s=[...calculators];s[l]=i,setCalculators(s)},calculateResults=()=>{const newResults=calculators.map(input=>{try{const normalized=input.replace(/,/g,"+").replace(/×/g,"*").replace(/÷/g,"/"),evalResult=eval(normalized);return evalResult.toString()}catch{return"Error"}});setResults(newResults)};return jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment,{children:[jsxRuntimeExports.jsxs(CalculatorContainer,{children:[calculators.map((l,i)=>jsxRuntimeExports.jsx(Calculator,{input:l,onInputChange:s=>updateCalculatorInput(i,s),result:results[i]||""},i)),jsxRuntimeExports.jsx(Button,{onClick:calculateResults,marginTop:8,children:"Calculate"})]}),jsxRuntimeExports.jsx(Button,{onClick:addCalculator,children:"Add Calculator"})]})},Container=dt.div`
   position: absolute;
   top: 40px;
   left: 0;
