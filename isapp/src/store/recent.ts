@@ -1,5 +1,7 @@
 import { atomWithStorage } from 'jotai/utils';
 
+import apps from '../apps';
+
 export interface RecentAppProps {
   name: string;
   icon: string;
@@ -8,10 +10,5 @@ export interface RecentAppProps {
 
 export const RECENTAPP_ID = 'recentApps';
 
-export const recentAppsAtom = atomWithStorage<RecentAppProps[]>(RECENTAPP_ID, [
-  {
-    name: 'Memo',
-    icon: 'https://yoonjonglyu.github.io/memo/assets/apple-touch-icon-60x60.png',
-    uri: 'https://yoonjonglyu.github.io/memo/',
-  },
+export const recentAppsAtom = atomWithStorage<RecentAppProps[]>(RECENTAPP_ID, [apps[0]
 ]);
