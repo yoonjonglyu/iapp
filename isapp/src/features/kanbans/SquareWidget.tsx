@@ -41,7 +41,11 @@ const SquareWidget: React.FC<SquareWidgetProps> = ({ openApp }) => {
             🧮
           </span>
         </WidgetItem>
-        <WidgetItem onClick={() => openApp}></WidgetItem>
+        <WidgetItem onClick={() => openApp('financecalculator')}>
+          <span role='img' aria-label='finance calculator'>
+            💰
+          </span>
+        </WidgetItem>
         <WidgetItem onClick={() => openApp}></WidgetItem>
         <WidgetItem onClick={() => openApp}></WidgetItem>
       </Container>

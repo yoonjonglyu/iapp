@@ -10,5 +10,6 @@ export interface RecentAppProps {
 
 export const RECENTAPP_ID = 'recentApps';
 
-export const recentAppsAtom = atomWithStorage<RecentAppProps[]>(RECENTAPP_ID, [apps[0]
+export const recentAppsAtom = atomWithStorage<RecentAppProps[]>(RECENTAPP_ID, [
+  apps[0],
 ]);

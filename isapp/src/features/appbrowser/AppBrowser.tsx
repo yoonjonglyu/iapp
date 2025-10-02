@@ -3,12 +3,12 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   position: absolute;
-  top: 40px;
+  top: 0;
   left: 0;
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: calc(100% - 40px);
+  height: 100%;
   background-color: #131212;
   z-index: 1000;
 `;
