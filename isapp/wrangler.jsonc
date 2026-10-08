@@ -8,14 +8,4 @@
     "not_found_handling": "single-page-application",
     "binding": "ASSETS",
   },
-  "unsafe": {
-    "bindings": [
-      {
-        "name": "/logos-path",
-        "type": "service",
-        "service": "logos-path",
-        "environment": "production",
-      },
-    ],
-  },
 }
