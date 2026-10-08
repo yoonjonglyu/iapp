@@ -1,5 +1,5 @@
 {
-  "name": "isapp",
+  "name": "apps",
   "main": "isapp/src/worker.js",
   "compatibility_date": "2026-10-08",
   "assets": {
