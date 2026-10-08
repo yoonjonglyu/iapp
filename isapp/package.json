@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "type": "module",
   "homepage": "/",
+  "packageManager": "yarn@1.22.22",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
