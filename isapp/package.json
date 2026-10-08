@@ -1,7 +1,7 @@
 {
   "name": "isapp",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "homepage": "/",
   "scripts": {
@@ -9,9 +9,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "generate-pwa-assets": "pwa-assets-generator",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "generate-pwa-assets": "pwa-assets-generator"
   },
   "dependencies": {
     "isa-util": "^1.0.18",
