@@ -34,70 +34,107 @@ type ResultType =
 // Styled Components
 const Container = styled.div`
   padding: 16px;
-  color: #cccccc;
-  font-family: Arial, sans-serif;
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 `;
 
 const Title = styled.h2`
-  margin-bottom: 16px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--text-primary);
 `;
 
 const Field = styled.div`
-  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  padding: 8px 12px;
+  background: var(--glass-card);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
 `;
 
 const Label = styled.label`
-  margin-right: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
 `;
 
 const Input = styled.input`
-  padding: 4px 8px;
-  font-size: 1rem;
+  padding: 6px 10px;
+  font-size: 0.9rem;
   width: 140px;
-`;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  text-align: right;
 
-const ButtonGroup = styled.div`
-  display: flex;
-  flex-flow: column wrap;
-  margin-top: 12px;
-  & > button {
-    margin-right: 8px;
+  &:focus {
+    border-color: var(--accent-cyan);
   }
 `;
 
+const ButtonGroup = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 12px;
+`;
+
 const Button = styled.button`
-  padding: 6px 16px;
-  font-size: 1rem;
-  color: #333;
-  border: 1px solid #aaa;
-  background: #f7f7f7;
-  border-radius: 4px;
+  padding: 10px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-md);
   cursor: pointer;
+  transition: all 0.2s var(--ease-spring);
+
   &:hover {
-    background: #eaeaea;
+    background: var(--accent-gradient);
+    border-color: transparent;
+    transform: translateY(-1px);
   }
 `;
 
 const ResultBox = styled.div`
-  max-height: 200px;
-  margin-top: 16px;
+  max-height: 240px;
+  margin-top: 12px;
   padding: 16px;
-  color: #222;
-  background: #f5f8fa;
-  border-radius: 6px;
-
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg);
   overflow-y: auto;
+
+  h3 {
+    font-size: 0.95rem;
+    color: var(--accent-cyan);
+    margin-bottom: 8px;
+  }
 `;
 
 const ScheduleList = styled.ul`
   margin: 0;
   padding-left: 20px;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
 `;
 
 const FreqSelect = styled.select`
-  padding: 4px 8px;
-  font-size: 1rem;
-  margin-left: 8px;
+  padding: 6px 10px;
+  font-size: 0.85rem;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
 `;
 
 const freqOptions: { value: CompoundFreqType; label: string; freq: number }[] =

@@ -1,9 +1,220 @@
-export type AppsProps = { name: string; icon: string, uri: string; }[];
+export interface AppItem {
+  id: string;
+  name: string;
+  category: 'miniapp' | 'productivity' | 'labs' | 'ai' | 'utility';
+  description: string;
+  icon: string;
+  iconType?: 'img' | 'emoji' | 'ai-logo';
+  aiLogoKey?: 'chatgpt' | 'gemini' | 'claude' | 'grok' | 'perplexity';
+  uri: string;
+  type: 'internal' | 'external' | 'external_link';
+  gradient?: string;
+  badge?: string;
+  featured?: boolean;
+}
 
+export type AppsProps = AppItem[];
 
 const apps: AppsProps = [
-  { name: 'Memo', icon: 'https://yoonjonglyu.github.io/memo/assets/apple-touch-icon-60x60.png', uri: 'https://yoonjonglyu.github.io/memo/' },
-  { name: 'Daoxin', icon: 'https://yoonjonglyu.github.io/daoxin/pwa-64x64.png', uri: 'https://yoonjonglyu.github.io/daoxin/' },
+  // ── [1] RyuisLabs 생태계 (최우선 배치) ──
+  {
+    id: 'logos-path',
+    name: 'Logos Path',
+    category: 'labs',
+    description: '인류의 깊은 지혜 경전과 사유의 길',
+    icon: '📜',
+    iconType: 'emoji',
+    uri: 'https://app.ryuislabs.com/logos-path',
+    type: 'external',
+    gradient: 'linear-gradient(135deg, #d97706 0%, #78350f 100%)',
+    badge: 'NEW',
+    featured: true,
+  },
+  {
+    id: 'asharyu-docs',
+    name: 'Asharyu Design',
+    category: 'labs',
+    description: '음양오행 & 수묵 담채 디자인 시스템 문서',
+    icon: '🎨',
+    iconType: 'emoji',
+    uri: 'https://docs.ryuislabs.com/',
+    type: 'external',
+    gradient: 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)',
+    badge: 'DOCS',
+    featured: true,
+  },
+  {
+    id: 'isa-archive',
+    name: 'ISA Archive',
+    category: 'labs',
+    description: '시스템 아키텍처 & 프로덕트 전체 아카이브',
+    icon: '🏛️',
+    iconType: 'emoji',
+    uri: 'https://archive.ryuislabs.com/',
+    type: 'external',
+    gradient: 'linear-gradient(135deg, #6366f1 0%, #4338ca 100%)',
+    badge: 'ARCHIVE',
+    featured: true,
+  },
+  {
+    id: 'ryuislabs-portal',
+    name: 'RyuisLabs',
+    category: 'labs',
+    description: '온디바이스 AI 비전 & 상태 검증 엔진 포털',
+    icon: '🌐',
+    iconType: 'emoji',
+    uri: 'https://ryuislabs.com/',
+    type: 'external',
+    gradient: 'linear-gradient(135deg, #0284c7 0%, #0369a1 100%)',
+    badge: 'STUDIO',
+    featured: true,
+  },
+
+  // ── [2] 생산성 & 자기 숙련 (Productivity) ──
+  {
+    id: 'daoxin',
+    name: 'Daoxin (도심)',
+    category: 'productivity',
+    description: '도가 철학 기반 내면 수행 & 의지 트래커',
+    icon: 'https://yoonjonglyu.github.io/daoxin/pwa-64x64.png',
+    iconType: 'img',
+    uri: 'https://yoonjonglyu.github.io/daoxin/',
+    type: 'external',
+    gradient: 'linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)',
+    badge: 'ABILITY',
+    featured: true,
+  },
+  {
+    id: 'memo',
+    name: 'MemoFlow',
+    category: 'productivity',
+    description: '오프라인 퍼스트 초경량 컴포넌트 메모장',
+    icon: 'https://yoonjonglyu.github.io/memo/assets/apple-touch-icon-60x60.png',
+    iconType: 'img',
+    uri: 'https://yoonjonglyu.github.io/memo/',
+    type: 'external',
+    gradient: 'linear-gradient(135deg, #f59e0b 0%, #b45309 100%)',
+    featured: true,
+  },
+  {
+    id: 'seedvault',
+    name: 'SeedVault',
+    category: 'productivity',
+    description: 'Argon2id + AES-256 군사급 오프라인 볼트',
+    icon: '🛡️',
+    iconType: 'emoji',
+    uri: 'https://archive.ryuislabs.com/work/seedvault/',
+    type: 'external',
+    gradient: 'linear-gradient(135deg, #059669 0%, #064e3b 100%)',
+    badge: 'SECURITY',
+  },
+  {
+    id: 'ability-gravity',
+    name: 'Gravity & Time',
+    category: 'productivity',
+    description: 'SF 중력 세계관 시간 통제 몰입 타이머',
+    icon: '🪐',
+    iconType: 'emoji',
+    uri: 'https://archive.ryuislabs.com/work/ability-gravity/',
+    type: 'external',
+    gradient: 'linear-gradient(135deg, #4f46e5 0%, #312e81 100%)',
+    badge: 'ABILITY',
+  },
+
+  // ── [3] 내장 코어 유틸리티 (Utility) ──
+  {
+    id: 'multicalculator',
+    name: '다기능 계산기',
+    category: 'utility',
+    description: '일반/공학용 스마트 연산 도구',
+    icon: '🧮',
+    iconType: 'emoji',
+    uri: 'multicalculator',
+    type: 'internal',
+    gradient: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)',
+    badge: 'CORE',
+    featured: true,
+  },
+  {
+    id: 'financecalculator',
+    name: '금융 계산기',
+    category: 'utility',
+    description: '적금, 대출, 이자 및 세금 계산',
+    icon: '💰',
+    iconType: 'emoji',
+    uri: 'financecalculator',
+    type: 'internal',
+    gradient: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+    badge: 'HOT',
+    featured: true,
+  },
+
+  // ── [4] AI 허브 도구 (AI Tools) ──
+  {
+    id: 'chatgpt',
+    name: 'ChatGPT',
+    category: 'ai',
+    description: 'OpenAI 지능형 대화 어시스턴트',
+    icon: 'ChatGPT',
+    iconType: 'ai-logo',
+    aiLogoKey: 'chatgpt',
+    uri: 'https://chat.openai.com/',
+    type: 'external_link',
+    gradient: 'linear-gradient(135deg, #10a37f 0%, #0d8265 100%)',
+    badge: 'OPENAI',
+  },
+  {
+    id: 'gemini',
+    name: 'Google Gemini',
+    category: 'ai',
+    description: '구글 멀티모달 최신 생성형 AI',
+    icon: 'Gemini',
+    iconType: 'ai-logo',
+    aiLogoKey: 'gemini',
+    uri: 'https://gemini.google.com/',
+    type: 'external_link',
+    gradient: 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)',
+    badge: 'GOOGLE',
+  },
+  {
+    id: 'claude',
+    name: 'Claude',
+    category: 'ai',
+    description: 'Anthropic 차세대 추론 AI',
+    icon: 'Claude',
+    iconType: 'ai-logo',
+    aiLogoKey: 'claude',
+    uri: 'https://claude.ai/',
+    type: 'external_link',
+    gradient: 'linear-gradient(135deg, #d97757 0%, #b25838 100%)',
+    badge: 'ANTHROPIC',
+  },
+  {
+    id: 'grok',
+    name: 'xAI Grok',
+    category: 'ai',
+    description: 'xAI 실시간 검색 & 유머러스 추론',
+    icon: 'Grok',
+    iconType: 'ai-logo',
+    aiLogoKey: 'grok',
+    uri: 'https://grok.x.ai/',
+    type: 'external_link',
+    gradient: 'linear-gradient(135deg, #09090b 0%, #18181b 100%)',
+    badge: 'xAI',
+  },
+  {
+    id: 'perplexity',
+    name: 'Perplexity',
+    category: 'ai',
+    description: '출처 기반 대화형 AI 검색 엔진',
+    icon: 'Perplexity',
+    iconType: 'ai-logo',
+    aiLogoKey: 'perplexity',
+    uri: 'https://www.perplexity.ai/',
+    type: 'external_link',
+    gradient: 'linear-gradient(135deg, #20808d 0%, #13535c 100%)',
+    badge: 'SEARCH',
+  },
 ];
 
 export default apps;

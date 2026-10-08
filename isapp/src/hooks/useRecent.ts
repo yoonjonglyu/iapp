@@ -12,7 +12,7 @@ const useRecent = () => {
       const updated = [
         app,
         ...prev.filter((item) => item.name !== app.name),
-      ].slice(0, 2); // Keep only the latest 2 entries
+      ].slice(0, 8); // Keep up to 8 recent apps
       setLocalStorage(RECENTAPP_ID, updated);
       return updated;
     });
